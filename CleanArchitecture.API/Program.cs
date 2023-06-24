@@ -1,4 +1,5 @@
 using AutoMapper;
+using CleanArchitecture.API.Mappers;
 using CleanArchitecture.Application.Contracts;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Infrastructure.Database;
@@ -23,7 +24,7 @@ builder.Services.AddScoped<IArtistService, ArtistService>();
 builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
 
 // AutoMapper
-var mapperConfig = new MapperConfiguration(m => {  });
+var mapperConfig = new MapperConfiguration(m => { m.AddProfile(new MappingProfile()); });
 
 IMapper mapper = mapperConfig.CreateMapper();
 
