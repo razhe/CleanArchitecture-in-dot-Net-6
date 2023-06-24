@@ -1,4 +1,8 @@
+using AutoMapper;
+using CleanArchitecture.Application.Contracts;
+using CleanArchitecture.Application.Services;
 using CleanArchitecture.Infrastructure.Database;
+using CleanArchitecture.Infrastructure.Database.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,9 +14,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//DbContext
+// DbContext
 builder.Services.AddDbContext<ChinookContext>( options => options
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Dependency Injection
+builder.Services.AddScoped<IArtistService, ArtistService>();
+builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+
+// AutoMapper
+var mapperConfig = new MapperConfiguration(m => {  });
+
+IMapper mapper = mapperConfig.CreateMapper();
+
+builder.Services.AddSingleton(mapper);
+builder.Services.AddMvc();
 
 var app = builder.Build();
 
