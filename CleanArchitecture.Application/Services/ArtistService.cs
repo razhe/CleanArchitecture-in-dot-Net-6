@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Application.Contracts;
+﻿using AutoMapper;
+using CleanArchitecture.Application.Contracts;
 using CleanArchitecture.Domain.Entities;
 
 namespace CleanArchitecture.Application.Services
@@ -14,7 +15,6 @@ namespace CleanArchitecture.Application.Services
         {
             return await _artistRepository.CreateArtistAsync(artist);
         }
-
         public async Task<IEnumerable<Artist>> GetAllArtistsAsync()
         {
             return await _artistRepository.GetAllArtistsAsync();
