@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.API.DTOs;
 using CleanArchitecture.Application.Contracts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.API.Controllers
@@ -27,11 +26,14 @@ namespace CleanArchitecture.API.Controllers
 
             return Ok(artistList);
         }
-        //[HttpPost]
-        //[Route("/artist")]
-        //public async Task<ActionResult<ArtistDTO>> PostCreateArtist()
-        //{
+        [HttpGet]
+        [Route("artist/{id}")]
+        public async Task<ActionResult<ArtistAlbumDTO>> GetArtistById([FromRoute] int id)
+        {
+            var result = await _artistService.GetArtistByIdAsync(id);
+            var artist = _mapper.Map<ArtistAlbumDTO>(result);
             
-        //}
+            return Ok(artist);
+        }
     }
 }

@@ -1,10 +1,12 @@
 using AutoMapper;
+using CleanArchitecture.API.Extensions;
 using CleanArchitecture.API.Mappers;
 using CleanArchitecture.Application.Contracts;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Infrastructure.Database;
 using CleanArchitecture.Infrastructure.Database.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,16 +22,16 @@ builder.Services.AddDbContext<ChinookContext>( options => options
     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Dependency Injection
-builder.Services.AddScoped<IArtistService, ArtistService>();
-builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+builder.Services.AddAplicationServices();
 
 // AutoMapper
-var mapperConfig = new MapperConfiguration(m => { m.AddProfile(new MappingProfile()); });
+builder.Services.AddMappers();
 
-IMapper mapper = mapperConfig.CreateMapper();
+//CorsPolicy (Extended)
+builder.Services.ConfigureCors();
 
-builder.Services.AddSingleton(mapper);
-builder.Services.AddMvc();
+//Ignore circular references
+builder.Services.IngoreJsonCircularReferences();
 
 var app = builder.Build();
 
@@ -39,6 +41,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//Adding CorsPolicy to http canalization request
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 

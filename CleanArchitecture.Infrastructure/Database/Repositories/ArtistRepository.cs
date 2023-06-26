@@ -22,7 +22,15 @@ namespace CleanArchitecture.Infrastructure.Database.Repositories
 
         public async Task<IEnumerable<Artist>> GetAllArtistsAsync()
         {
-            return await _dbContext.Artist.ToListAsync();
+            return await _dbContext.Artist
+                .ToListAsync();
+        }
+
+        public async Task<Artist> GetArtistByIdAsync(int id)
+        {
+            return await _dbContext.Artist
+                .Include(a => a.Album)
+                .FirstOrDefaultAsync();
         }
     }
 }

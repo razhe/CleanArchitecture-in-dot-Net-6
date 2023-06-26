@@ -8,7 +8,12 @@ namespace CleanArchitecture.API.Mappers
     {
         public MappingProfile()
         {
-            this.CreateMap<Artist, ArtistDTO>();
+            this.CreateMap<Album, AlbumDTO>()
+                .ReverseMap();
+            this.CreateMap<Artist, ArtistDTO>()
+                .ReverseMap();
+            this.CreateMap<Artist, ArtistAlbumDTO>()
+                .ReverseMap();
         }
     }
 }
