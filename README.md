@@ -18,6 +18,3 @@ Es la capa más externa del sistema y no debería tener conocimiento de las capa
 Anotación: 
 1) La clase de aplicación se añade como referencia.
 2) La API nunca dependerá de la capa de infraestructura, pero tenemos que hacer referencia a la capa de infraestructura en el proyecto de interfaz de usuario en el caso de registrar la inyección de dependencia de servicios. Así que el proyecto de interfaz de usuario no debe utilizar ningún código de la capa de infraestructura que no sea la inyección de dependencia.
-
-
-Texto extraido de: https://www.codeproject.com/Articles/5351235/Clean-Architecture-Incorporating-Repository-Patter
