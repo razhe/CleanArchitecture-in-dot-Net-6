@@ -45,5 +45,15 @@ namespace CleanArchitecture.Infrastructure.Database.Repositories
                 .Include(a => a.Album)
                 .FirstOrDefaultAsync();
         }
+
+        public async Task<Artist> UpdateArtistAsync(Artist artist)
+        {
+            _logger.LogInformation($"CreateArtistAsync - {JsonSerializer.Serialize(artist)}");
+
+            _dbContext.Update(artist);
+            await _dbContext.SaveChangesAsync();
+
+            return artist;
+        }
     }
 }

@@ -31,5 +31,10 @@ namespace CleanArchitecture.Application.Services
         {
             return await _artistRepository.GetArtistByIdAsync(id);
         }
+
+        public async Task<Artist> UpdateArtistAsync(Artist artist)
+        {
+            return await _artistRepository.UpdateArtistAsync(artist);
+        }
     }
 }

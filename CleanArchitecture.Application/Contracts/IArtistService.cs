@@ -7,5 +7,6 @@ namespace CleanArchitecture.Application.Contracts
         Task<Artist> CreateArtistAsync(Artist artist);
         Task<IEnumerable<Artist>> GetAllArtistsAsync();
         Task<Artist> GetArtistByIdAsync(int id);
+        Task<Artist> UpdateArtistAsync(Artist artist);
     }
 }

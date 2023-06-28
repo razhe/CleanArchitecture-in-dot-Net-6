@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CleanArchitecture.API.DTOs;
 using CleanArchitecture.Application.Contracts;
+using CleanArchitecture.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.API.Controllers
@@ -34,6 +35,22 @@ namespace CleanArchitecture.API.Controllers
             var artist = _mapper.Map<ArtistAlbumDTO>(result);
             
             return Ok(artist);
+        }
+        [HttpPost]
+        [Route("")]
+        public async Task<ActionResult<ArtistDTO>> PostCreateArtistAsync([FromBody] ArtistDTO artist)
+        {
+            var newArtist = _mapper.Map<Artist>(artist);
+            var results = await _artistService.CreateArtistAsync(newArtist);
+            return Ok(results);
+        }
+        [HttpPut]
+        [Route("")]
+        public async Task<ActionResult<ArtistDTO>> PutUpdateArtistAsync([FromBody] ArtistDTO artist)
+        {
+            var updatedArtist = _mapper.Map<Artist>(artist);
+            var results = await _artistService.UpdateArtistAsync(updatedArtist);
+            return Ok(results);
         }
     }
 }
