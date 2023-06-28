@@ -1,22 +1,35 @@
 ﻿using CleanArchitecture.Application.Contracts;
 using CleanArchitecture.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace CleanArchitecture.Infrastructure.Database.Repositories
 {
     public class ArtistRepository : IArtistRepository
     {
         private readonly ChinookContext _dbContext;
+        private readonly ILogger<ArtistRepository> _logger;
+        private ChinookContext db;
 
-        public ArtistRepository(ChinookContext dbContext)
+        public ArtistRepository(ChinookContext db)
+        {
+            this.db = db;
+        }
+
+        public ArtistRepository(ChinookContext dbContext, ILogger<ArtistRepository> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public async Task<Artist> CreateArtistAsync(Artist artist)
         {
             await _dbContext.Artist.AddAsync(artist);
             await _dbContext.SaveChangesAsync();
+
+            _logger.LogInformation($"CreateArtistAsync - {JsonSerializer.Serialize(artist)}");
+
             return artist;
         }
 
