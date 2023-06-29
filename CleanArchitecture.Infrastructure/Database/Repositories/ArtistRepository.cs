@@ -10,12 +10,6 @@ namespace CleanArchitecture.Infrastructure.Database.Repositories
     {
         private readonly ChinookContext _dbContext;
         private readonly ILogger<ArtistRepository> _logger;
-        private ChinookContext db;
-
-        public ArtistRepository(ChinookContext db)
-        {
-            this.db = db;
-        }
 
         public ArtistRepository(ChinookContext dbContext, ILogger<ArtistRepository> logger)
         {
