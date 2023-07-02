@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Contracts;
+﻿using CleanArchitecture.Application.Abstractions;
 using CleanArchitecture.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,9 +11,10 @@ namespace CleanArchitecture.Application.Services
 {
     public class ArtistService : IArtistService
     {
-        private readonly IArtistRepository _artistRepository;
+        private readonly IArtistDAO _artistRepository;
+
         private readonly ILogger<ArtistService> _logger;
-        public ArtistService(IArtistRepository artistRepository, ILogger<ArtistService> logger)
+        public ArtistService(IArtistDAO artistRepository, ILogger<ArtistService> logger)
         {
             _artistRepository = artistRepository;
             _logger = logger;

@@ -22,7 +22,7 @@ namespace CleanArchitecture.UnitTests.Services
             this._artistMock = new Faker<Artist>();
 
             //Inicializar la clase maqueta y probar el objeto de clase
-            var artistRepositoryMock = new Mock<IArtistRepository>();
+            var artistRepositoryMock = new Mock<ArtistDAO>();
             Mock <ILogger<ArtistService>> logger = new Mock<ILogger<ArtistService>>();
 
             //This contains the rules for generating the fake data.            

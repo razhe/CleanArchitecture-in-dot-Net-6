@@ -1,10 +1,10 @@
 using AutoMapper;
 using CleanArchitecture.API.Extensions;
 using CleanArchitecture.API.Mappers;
-using CleanArchitecture.Application.Contracts;
+using CleanArchitecture.Application.Abstractions;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Infrastructure.Database;
-using CleanArchitecture.Infrastructure.Database.Repositories;
+using CleanArchitecture.Infrastructure.Database.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 

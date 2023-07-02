@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.API.DTOs;
-using CleanArchitecture.Application.Contracts;
+using CleanArchitecture.Application.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.API.Controllers
