@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using CleanArchitecture.API.Mappers;
-using CleanArchitecture.Application.Contracts;
+using CleanArchitecture.Application.Abstractions;
 using CleanArchitecture.Application.Services;
-using CleanArchitecture.Infrastructure.Database.Repositories;
+using CleanArchitecture.Infrastructure.Database.Abstractions;
 using System.Text.Json.Serialization;
 
 namespace CleanArchitecture.API.Extensions
@@ -21,7 +21,7 @@ namespace CleanArchitecture.API.Extensions
         public static void AddAplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IArtistService, ArtistService>();
-            services.AddScoped<IArtistRepository, ArtistRepository>();
+            services.AddScoped<IArtistDAO, ArtistDAO>();
         }
 
         public static void AddMappers(this IServiceCollection services) 

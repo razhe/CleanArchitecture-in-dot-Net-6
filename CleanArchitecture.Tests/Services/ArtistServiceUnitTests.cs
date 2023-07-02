@@ -1,7 +1,8 @@
 ﻿using Bogus;
-using CleanArchitecture.Application.Contracts;
+using CleanArchitecture.Application.Abstractions;
 using CleanArchitecture.Application.Services;
 using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Infrastructure.Database.Abstractions;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -22,7 +23,7 @@ namespace CleanArchitecture.UnitTests.Services
             this._artistMock = new Faker<Artist>();
 
             //Inicializar la clase maqueta y probar el objeto de clase
-            var artistRepositoryMock = new Mock<IArtistRepository>();
+            var artistRepositoryMock = new Mock<ArtistDAO>();
             Mock <ILogger<ArtistService>> logger = new Mock<ILogger<ArtistService>>();
 
             //This contains the rules for generating the fake data.            

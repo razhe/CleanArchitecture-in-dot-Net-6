@@ -1,40 +1,36 @@
-﻿using CleanArchitecture.Application.Contracts;
+﻿using CleanArchitecture.Application.Abstractions;
 using CleanArchitecture.Domain.Entities;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Services
 {
     public class ArtistService : IArtistService
     {
-        private readonly IArtistRepository _artistRepository;
+        private readonly IArtistDAO _artistDao;
         private readonly ILogger<ArtistService> _logger;
-        public ArtistService(IArtistRepository artistRepository, ILogger<ArtistService> logger)
+
+        public ArtistService(IArtistDAO artistDao, ILogger<ArtistService> logger)
         {
-            _artistRepository = artistRepository;
+            _artistDao = artistDao;
             _logger = logger;
         }
         public async Task<Artist> CreateArtistAsync(Artist artist)
         {
-            return await _artistRepository.CreateArtistAsync(artist);
+            return await _artistDao.CreateArtistAsync(artist);
         }
         public async Task<IEnumerable<Artist>> GetAllArtistsAsync()
         {
-            return await _artistRepository.GetAllArtistsAsync();
+            return await _artistDao.GetAllArtistsAsync();
         }
 
         public async Task<Artist> GetArtistByIdAsync(int id)
         {
-            return await _artistRepository.GetArtistByIdAsync(id);
+            return await _artistDao.GetArtistByIdAsync(id);
         }
 
         public async Task<Artist> UpdateArtistAsync(Artist artist)
         {
-            return await _artistRepository.UpdateArtistAsync(artist);
+            return await _artistDao.UpdateArtistAsync(artist);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.API.DTOs;
-using CleanArchitecture.Application.Contracts;
+using CleanArchitecture.Application.Abstractions;
 using CleanArchitecture.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
